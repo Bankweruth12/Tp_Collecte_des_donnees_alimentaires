@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Résultats de l'analyse</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📈 Analyse des Données Collectées</h1>
+
+        {% if message %}
+            <div class="alert success">{{ message }}</div>
+        {% endif %}
+
+        <div class="stats">
+            <h2>Vue d'ensemble</h2>
+            <p><strong>Total des réponses collectées :</strong> {{ total }}</p>
+
+            {% if total > 0 %}
+            <h3>Répartition par type de repas :</h3>
+            <ul>
+                {% for type, nombre in types.items() %}
+                <li>{{ type }} : {{ nombre }} fois</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Répartition par lieu :</h3>
+            <ul>
+                {% for lieu, nombre in lieux.items() %}
+                <li>{{ lieu }} : {{ nombre }} fois</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Moyennes générales :</h3>
+            <p>😋 Niveau de faim moyen : <strong>{{ faim }} / 5</strong></p>
+            <p>😊 Niveau de satisfaction moyen : <strong>{{ satisfaction }} / 5</strong></p>
+
+            {% else %}
+            <p>Aucune donnée n'a encore été collectée.</p>
+            {% endif %}
+
+        </div>
+
+        <br>
+        <a href="{{ url_for('index') }}" class="btn">Revenir au formulaire</a>
+    </div>
+</body>
+</html>
