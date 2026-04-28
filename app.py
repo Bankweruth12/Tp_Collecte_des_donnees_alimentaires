@@ -86,5 +86,3 @@ def resultats():
 with app.app_context():
     db.create_all()
 
-if _name_ == "__main__":
-    app.run( host="0.0.0.0", port= 8000, debug=True)
