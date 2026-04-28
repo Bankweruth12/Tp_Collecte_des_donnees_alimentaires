@@ -2,8 +2,8 @@
 from flask import Flask, render_template, request # pyright: ignore[reportMissingImports]
 from flask_sqlalchemy import SQLAlchemy # pyright: ignore[reportMissingImports]
 import os
-
-app = Flask("monapp")
+template_dir = os.path.dirname(os.path.abspath(__file__))
+app = Flask(__name__, template_folder=template_dir + '/templates')
 # Configuration de la base de données
 base_dir = os.path.dirname(os.path.abspath("_file_"))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(base_dir, 'database.db')
@@ -86,5 +86,5 @@ def resultats():
 with app.app_context():
     db.create_all()
 
-if "monapp" == "__main__":
+if _name_ == "__main__":
     app.run( host="0.0.0.0", port= 8000, debug=True)
