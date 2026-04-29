@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Résultats de l'analyse</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -19,6 +19,7 @@
             <p><strong>Total des réponses collectées :</strong> {{ total }}</p>
 
             {% if total > 0 %}
+            
             <h3>Répartition par type de repas :</h3>
             <ul>
                 {% for type, nombre in types.items() %}
@@ -37,6 +38,31 @@
             <p>😋 Niveau de faim moyen : <strong>{{ faim }} / 5</strong></p>
             <p>😊 Niveau de satisfaction moyen : <strong>{{ satisfaction }} / 5</strong></p>
 
+            <!-- PARTIE TABLEAU DE BORD ET GRAPHIQUE -->
+            <div class="dashboard">
+                <h3>📊 Visualisation Graphique</h3>
+                <div class="graph-container">
+                    <canvas id="graphiqueRepas"></canvas>
+                </div>
+            </div>
+
+            <!-- 👇 PARTIE INTELLIGENCE ARTIFICIELLE 👇 -->
+            <div class="ia-section">
+                <h2>🤖 Analyse et Suggestions de l'IA</h2>
+                
+                <div class="analyse-box">
+                    <p><strong>Diagnostic :</strong> {{ analyse_ia }}</p>
+                </div>
+
+                <h4>💡 Conseils personnalisés :</h4>
+                <ul class="suggestions-list">
+                    {% for conseil in suggestions %}
+                    <li>{{ conseil }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- 👆 PARTIE IA FIN 👆 -->
+
             {% else %}
             <p>Aucune donnée n'a encore été collectée.</p>
             {% endif %}
@@ -46,5 +72,40 @@
         <br>
         <a href="{{ url_for('index') }}" class="btn">Revenir au formulaire</a>
     </div>
+
+    <script>
+        {% if total > 0 %}
+        var ctx = document.getElementById('graphiqueRepas').getContext('2d');
+        
+        var typesData = {{ types|safe }};
+        var labels = Object.keys(typesData);
+        var values = Object.values(typesData);
+
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Nombre de repas',
+                    data: values,
+                    backgroundColor: [
+                        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+        {% endif %}
+    </script>
 </body>
 </html>
+
