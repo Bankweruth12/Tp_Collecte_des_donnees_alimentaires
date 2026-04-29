@@ -81,7 +81,7 @@ def submit():
                 else:
                     analyse_ia = "Votre appétit est dans la moyenne, c'est parfait."
 
-                if satisfaction_moyenne < 3:
+                if satisfaction_moyenne <= 3:
                     analyse_ia += " Par contre, vous n'êtes pas totalement satisfait de vos repas."
                     suggestions.append("😋 N'hésitez pas à tester de nouvelles recettes pour plus de plaisir.")
 
@@ -167,4 +167,4 @@ with app.app_context():
 
 if __name__ == "__main__":
     app.run(debug=True)
-app.run(debug=True)
+app.run(host='0.0.0.0' , port=8501, debug=True)
