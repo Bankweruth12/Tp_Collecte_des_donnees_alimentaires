@@ -1,76 +1,104 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+/* ==========================================
+   STYLE GÉNÉRAL
+   ========================================== */
+
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #6dd5ed, #2193b0);
+    min-height: 100vh;
     padding: 20px;
 }
 
 .container {
     max-width: 800px;
-    margin: auto;
+    margin: 0 auto;
     background: white;
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
+
+/* ==========================================
+   TITRES ET TEXTE
+   ========================================== */
 
 h1 {
-    color: #333;
     text-align: center;
+    color: #2193b0;
+    margin-bottom: 30px;
 }
 
-.form-group {
-    margin-bottom: 20px;
+h2, h3 {
+    color: #333;
+    margin: 20px 0 10px;
+}
+
+/* ==========================================
+   FORMULAIRE
+   ========================================== */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 label {
-    display: block;
-    margin-bottom: 8px;
     font-weight: bold;
+    color: #555;
 }
 
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
+input, textarea, select {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
 }
+
+input:focus, textarea:focus, select:focus {
+    border-color: #2193b0;
+    outline: none;
+}
+
+/* ==========================================
+   BOUTONS
+   ========================================== */
 
 .btn {
-    display: inline-block;
-    background: #28a745;
+    background: #2193b0;
     color: white;
-    padding: 12px 20px;
-    text-decoration: none;
-    border-radius: 5px;
+    padding: 15px;
     border: none;
+    border-radius: 8px;
+    font-size: 18px;
     cursor: pointer;
-    font-size: 16px;
+    transition: background 0.3s;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
 }
 
 .btn:hover {
-    background: #218838;
+    background: #176d83;
 }
 
-.btn-secondary {
-    background: #007bff;
-}
-
-.btn-secondary:hover {
-    background: #0056b3;
-}
-
-.stats {
-    background: #e9ecef;
-    padding: 20px;
-    border-radius: 8px;
-}
+/* ==========================================
+   MESSAGES D'ALERTE
+   ========================================== */
 
 .alert {
     padding: 15px;
+    border-radius: 8px;
     margin-bottom: 20px;
-    border-radius: 5px;
+    text-align: center;
 }
 
 .success {
@@ -78,3 +106,87 @@ input, select, textarea {
     color: #155724;
     border: 1px solid #c3e6cb;
 }
+
+/* ==========================================
+   STATS ET TABLEAU DE BORD
+   ========================================== */
+
+.stats {
+    line-height: 1.8;
+}
+
+.stats ul {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.stats li {
+    background: #f8f9fa;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* ==========================================
+   PARTIE GRAPHIQUE
+   ========================================== */
+
+.dashboard {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 25px;
+    border: 1px solid #eee;
+}
+
+.graph-container {
+    position: relative;
+    height: 300px;
+    width: 90%;
+    margin: auto;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* ==========================================
+   PARTIE INTELLIGENCE ARTIFICIELLE
+   ========================================== */
+
+.ia-section {
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 25px;
+    color: #2c3e50;
+}
+
+.ia-section h2 {
+    color: white;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.analyse-box {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    font-style: italic;
+}
+
+.suggestions-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.suggestions-list li {
+    background: white;
+    margin: 8px 0;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border-left: 5px solid #8ec5fc;
+}
+
+
